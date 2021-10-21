@@ -141,6 +141,21 @@ const gender = {
     ],
 };
 
+const updatePassword = {
+    type: 'input',
+    label: 'Update Your Password',
+    attributes: {
+        name: 'below18',
+        value: 'SomePassword@!#$',
+        type: 'password'
+    },
+    validators: {
+        required: {value: true, errorMessage: 'Field is required'}
+    },
+    styles : ['password-field']
+};
+
+
 const below18 = {
     type: 'input',
     label: 'you are below 18',
@@ -166,6 +181,7 @@ const config = {
         below18,
         birthdate,
         gender,
+        updatePassword,
         aboutYou,
         submitButton
     ],

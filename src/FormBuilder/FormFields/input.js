@@ -26,8 +26,8 @@ class Input extends FormField {
                 this.el.addEventListener(key, events[key]);
             }
         }
-
-        for(const eve of defaultEventhandlerForValidity[this.config.attributes.type]) {
+        const eventsToAdd = defaultEventhandlerForValidity[this.config.attributes.type] || ['change'];
+        for(const eve of eventsToAdd ) {
             this.el.addEventListener(eve, () => this.checkValidity());
         }
     }

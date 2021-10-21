@@ -5,10 +5,16 @@ body {
     flex-direction: column;
 }
 #form-container {
-    width: 60%
+    width: 70%
 }
 .outerStyle {
     color: green;
     font-weight: 900;
+}
+.password-field {
+    font-size: 18px;
+}
+.custom-form-field {
+    width: 60%;
 }
 
