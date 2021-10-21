@@ -5,7 +5,7 @@ export const defaultEventhandlerForValidity = {
     'number' : ['change','click'],
     'date' : ['change'],
     'checkbox' : ['change'],
-    'radio' : ['change'],
+    'radio' : ['change']
 }
 class Input extends FormField {
     
@@ -21,7 +21,8 @@ class Input extends FormField {
     }
 
     setEvents(events) {
-        if(this.config.events){
+        console.log(events);
+        if(this.config.events) {
             for(let key in events) {
                 this.el.addEventListener(key, events[key]);
             }
@@ -32,11 +33,23 @@ class Input extends FormField {
         }
     }
 
+    useInfoBox(val=false) {
+        if(val) {
+            this.errorBox.classList.remove('error-message');
+            this.errorBox.classList.add('info-message');
+        } else {
+            this.errorBox.classList.add('error-message');
+            this.errorBox.classList.remove('info-message');
+        }
+    }
+
     checkValidity() {
-        console.log('checking validity of ', this.name );
+        // console.log('checking validity of ', this.name, this.el.validity );
         if(!this.touched) return;
 
-        this.errorBox.innerHTML = '';
+        if(this.errorBox.classList.contains('error-message')) {
+            this.errorBox.innerHTML = '';
+        }
 
         let msg = '';
         if(this.el.validity.tooLong) {
@@ -49,6 +62,10 @@ class Input extends FormField {
         }
         if(this.touched && this.el.validity.valueMissing && this.el.hasAttribute('required')) {
             msg += (this.config.validators?.required?.errorMessage || '');
+            msg += (msg.length ?'<br>': '');
+        }
+        if(!this.el.validity.valueMissing && this.el.validity.customError) {
+            msg += (this.config.validators?.customValidator?.errorMessage || '');
             msg += (msg.length ?'<br>': '');
         }
 

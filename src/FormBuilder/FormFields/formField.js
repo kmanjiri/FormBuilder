@@ -2,11 +2,11 @@ class FormField {
 
     constructor(config) {
         this.config = config;
-        this.tagName = config.type;
-        this.type = config.group ? config.group : config.type;
-        this.name = config.attributes.name;
         // javascript element node reference - el
-        this.el = document.createElement(this.tagName);
+        this.el = document.createElement(this.config.type);
+        this.type = config.group ? config.group : this.el.type;
+        this.name = this.config.attributes.name;
+        this.tagName = this.el.tagName.toLowerCase();
         this.touched = false;
         this.parse();
     }
@@ -20,7 +20,7 @@ class FormField {
 
     set value(val) {
         if(val != undefined) {
-            console.log(val);
+            console.log('setting val',this.el.name, val);
             if(this.el.type.toLowerCase() == 'radio') {
                 if(val == true) this.el.checked = true;
                 else this.el.checked = false;
@@ -67,8 +67,15 @@ class FormField {
 
     setValidators(validators) {
         for(let key in validators) {
-            if(key === 'customValidator') {
-                // validators[key].apply(this);
+            if(key == 'customValidator') {
+                this.el.addEventListener('input', () => {
+                    const res = validators[key].value().call(this);
+                    if(!res) {
+                        this.el.setCustomValidity(validators[key].errorMessage);
+                    } else{
+                        this.el.setCustomValidity('');
+                    }
+                });
             } else {
                 this.el.setAttribute(key, validators[key].value || '');
             }

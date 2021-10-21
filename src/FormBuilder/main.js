@@ -40,7 +40,6 @@ class FormBuilder {
             switch(searchFor) {
                 case 'input-group':
                     const inpRadioGrpEl = new RadioGroup(c);
-
                     if(inpRadioGrpEl.groupLabel) {
                         elArr.push(inpRadioGrpEl.groupLabel);
                         this.controls[inpRadioGrpEl.name] = inpRadioGrpEl.elGroup;
@@ -126,20 +125,19 @@ class FormBuilder {
     }
 
     updateFormData() {
-        console.log('updating form states ');
+        console.log('updating form states..');
         for( let key in this.controls) {
             const control = this.controls[key];
-            if(control.type && ['input', 'textarea'].includes(control.type)) {
-                this.formData[control.name] = control.value;
-            } else if(control instanceof Array) {
+            if(control instanceof Array) {
                 for(let el of control) {
                     if(el.el.checked) {
                         this.formData[el.name] = el.el.value;
                     }
                 }
+            } else if(control.tagName && ['input', 'textarea'].includes(control.tagName)) {
+                this.formData[control.name] = control.value;
             }
         }
-
     }
 
     enableSubmitButton() {

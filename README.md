@@ -24,6 +24,8 @@ About FormBuilder
                 minlength: {value: 4, errorMessage: 'Min Length required is 4'},
                 maxlength: {value: 15, errorMessage: 'Max Length required is 15'},
                 required: {value: true, errorMessage: 'Field is required'},
+                customValidator: {value: 'function reference that returns validator function that shoiuld be execited in context of event', errorMessage: 'Related error message'}
+
             },
             events: {
                 'eventName': 'function references that should be executed when this event is fired',
@@ -81,6 +83,9 @@ What it does
     6. access form validtion or control validation states from outer components
     7. unique id generation for every form control
     8. manipulate states of form control from outside using setter getter function for value and it will trigger change event which will keep the formdata updated with values changed from outisde
+    9. custom validators supported 
+    10. Use error message box as info box like this - form.controls.rating.useInfoBox(true); 
+
 
 
 What can be improved
@@ -90,7 +95,7 @@ What can be improved
     3. functionality : 
     
         1. Control public/private apis of FormBuilderObj
-        2. custom validators
-        3. adding more checks of native validators (I ahve added only few checks)
-        4. dynamically hide/show controls based on user inputs
+        2. adding more checks of native validators (I ahve added only few checks)
+        3. dynamically hide/show controls based on user inputs
+        4. Use interfaces/typescript 
 

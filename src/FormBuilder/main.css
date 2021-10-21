@@ -18,7 +18,7 @@ input {
 input[type=radio] {
     width: fit-content;
 }
-input[type=date], input[type=number] {
+input[type=date], input[type=number], input[type=range] {
     width: 40%;
 }
 input[type=checkbox] {
@@ -57,7 +57,12 @@ button:disabled {
     cursor: not-allowed;
 }
 .error-message {
-    color: rgb(150, 22, 22);
+    color: rgb(212, 16, 16);
+    padding: 0.5rem 0rem;
+    font-size: 12px;
+}
+.info-message {
+    color: green;
     padding: 0.5rem 0rem;
     font-size: 12px;
 }

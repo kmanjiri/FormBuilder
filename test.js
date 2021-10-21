@@ -14,6 +14,11 @@ const onKeyup = (e) => {
     console.log('we can fire input autocomplete api calls from here');
 }
 
+const updateSliderVal = (event) => {
+    // const val = event.target.value;
+    form.controls.rating.errorBox.innerText = ` Your selection - ${form.controls.rating.value}`;
+    form.controls.rating.useInfoBox(true);
+}
 const ageChange = (e) => {
     console.log('setting form control values from outside based on other inputs');
     if(parseInt(form.controls.age.value) < 18) {
@@ -22,16 +27,14 @@ const ageChange = (e) => {
         form.controls.below18.value = false;
     }
 }
-const customValidator = (e) => {
-    //not functional
+const nameConstraints = (e) => {
     return function () {
-        if(this.el.value.startsWith('M')) {
+        if(this.el.value.toLowerCase().startsWith('m')) {
             return true;
         }
         return false;
     }
 }
-
 
 // defining the controls
 const fname = {
@@ -40,18 +43,15 @@ const fname = {
     attributes: {
         name: 'firstName',
         placeholder: 'Enter Name...',
-        value: 'Manjiri',
+        value: '',
         type: 'text'
     },
     validators: {
         minlength: {value: 4, errorMessage: 'Min Length required is 4'},
         maxlength: {value: 15, errorMessage: 'Max Length required is 15'},
         required: {value: true, errorMessage: 'Field is required'},
-        customValidator: {value: customValidator(), errorMessage: 'Name should Start from M'}
-    },
-    events: {
-        'keyup': onKeyup
-    },
+        customValidator: {value: nameConstraints, errorMessage: 'Name should Start with M/m'}
+    }
 };
 const lname = {
     type: 'input',
@@ -59,8 +59,10 @@ const lname = {
     attributes: {
         name: 'lastName',
         placeholder: 'Last Name.. with custom style...',
-        value: '',
-        type: 'text'
+        value: 'Manjiri',
+    },
+    events: {
+        'keyup': onKeyup
     },
     styles : ['outerStyle']
 };
@@ -145,7 +147,7 @@ const updatePassword = {
     type: 'input',
     label: 'Update Your Password',
     attributes: {
-        name: 'below18',
+        name: 'updatePassword',
         value: 'SomePassword@!#$',
         type: 'password'
     },
@@ -154,7 +156,6 @@ const updatePassword = {
     },
     styles : ['password-field']
 };
-
 
 const below18 = {
     type: 'input',
@@ -170,6 +171,22 @@ const below18 = {
     styles : ['custom-form-field']
 };
 
+const rating = {
+    type: 'input',
+    label: 'Rate your experience (0 to 10)',
+    attributes: {
+        name: 'rating',
+        value: '5',
+        type: 'range',
+        min: 0,
+        max: 10
+    },
+    events: {
+        'change': updateSliderVal
+    },
+    styles : ['password-field']
+};
+
 // Building config Object
 const config = {
     containerId: 'form-container',
@@ -182,6 +199,7 @@ const config = {
         birthdate,
         gender,
         updatePassword,
+        rating,
         aboutYou,
         submitButton
     ],
