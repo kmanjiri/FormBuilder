@@ -116,7 +116,7 @@ const aboutYou = {
         cols: "30"
     },
     validators: {
-        minlength: {value: 2, errorMessage: 'Write few more words..!'},
+        minlength: {value: 20, errorMessage: 'Write few more words..!'},
         required: {value: true, errorMessage: 'Field is required'}
     },
     events: {
