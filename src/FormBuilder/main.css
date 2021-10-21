@@ -14,13 +14,12 @@ input {
     border: none;
     border-bottom: 1px solid lightblue;
     display: inline-block;
-
 }
 input[type=radio] {
     width: fit-content;
 }
 input[type=date], input[type=number] {
-    width: 30%;
+    width: 40%;
 }
 input[type=checkbox] {
     width: fit-content;

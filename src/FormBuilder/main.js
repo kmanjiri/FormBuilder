@@ -7,6 +7,7 @@ import Input from './FormFields/input.js';
 import Button from './FormFields/button.js';
 import RadioGroup from './FormFields/radioGroup.js';
 import deepClone from './helper/deepClone.js';
+import Textarea from './FormFields/textarea.js';
 
 class FormBuilder {
     // #configCopy = null; // private vars
@@ -32,41 +33,12 @@ class FormBuilder {
         for(let c of this.config.formFields) {
             c.validateFormFn = () => this.validateForm();
 
-            let searchFor = c.type+'-'+c.attributes?.type;
+            let searchFor = c.type;
             if(c.group === 'group') {
                 searchFor += '-'+c.group;
             }
             switch(searchFor) {
-                case 'input-text':
-                case 'input-number':
-                case 'input-email':
-                case 'input-color':
-                case 'input-date':
-                case 'input-checkbox':
-                case 'input-radio':
-                case 'input':
-                    const inpEl = new Input(c);
-                    if(inpEl) {
-                        elArr.push(inpEl.label);
-                        elArr.push(inpEl.el);
-                        elArr.push(inpEl.errorBox);
-
-                        this.controls[inpEl.name] = inpEl;
-                    }
-                    break;
-                case 'textarea-text':
-                case 'textarea':
-                    const txtEl = new Input(c);
-                    if(txtEl) {
-                        elArr.push(txtEl.label);
-                        elArr.push(txtEl.el);
-                        elArr.push(txtEl.errorBox);
-
-                        this.controls[txtEl.name] = txtEl;
-
-                    }
-                    break;
-                case 'input-radio-group':
+                case 'input-group':
                     const inpRadioGrpEl = new RadioGroup(c);
 
                     if(inpRadioGrpEl.groupLabel) {
@@ -74,20 +46,31 @@ class FormBuilder {
                         this.controls[inpRadioGrpEl.name] = inpRadioGrpEl.elGroup;
                     }
                     break;
-                case 'button-button':
+                case 'input':
+                    const inpEl = new Input(c);
+                    if(inpEl) {
+                        elArr.push(inpEl.label);
+                        elArr.push(inpEl.el);
+                        elArr.push(inpEl.errorBox);
+                        this.controls[inpEl.name] = inpEl;
+                    }
+                    break;
+                case 'textarea':
+                    const txtEl = new Textarea(c);
+                    if(txtEl) {
+                        elArr.push(txtEl.label);
+                        elArr.push(txtEl.el);
+                        elArr.push(txtEl.errorBox);
+                        this.controls[txtEl.name] = txtEl;
+                    }
+                    break;
                 case 'button':
                     const btnEl = new Button(c);
                     if(btnEl) {
                         elArr.push(btnEl.el);
-                    }
-                    break;
-                case 'button-submit':
-                    const btnSubmitEl = new Button(c);
-                    if(btnSubmitEl.formAction) {
-                        this.formSubmitButton = btnSubmitEl;
-                    }
-                    if(btnSubmitEl) {
-                        elArr.push(btnSubmitEl.el);
+                        if(btnEl.formAction) {
+                            this.formSubmitButton = btnEl;
+                        }
                     }
                     break;
                 default:

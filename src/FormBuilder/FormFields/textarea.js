@@ -1,5 +1,6 @@
-class Textarea extends Input {
+import Input from "./input.js";
 
+class Textarea extends Input {
     
 }
 
