@@ -1,0 +1,17 @@
+{
+  "name": "interview",
+  "version": "1.0.0",
+  "description": "",
+  "main": "test.js",
+  "scripts": {
+    "start": "http-server --cors"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "http-server": "^14.0.0"
+  }
+}

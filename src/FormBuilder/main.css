@@ -1,0 +1,64 @@
+.form {
+    border: 1px solid lightblue;
+    margin: 1rem;
+    padding: 3rem;
+    font-size: 16px;
+    display:flex;
+    flex-direction: column;
+}
+input {
+    width: 70%;
+    display: block;
+    padding: 0.3rem 0;
+    outline:none;
+    border: none;
+    border-bottom: 1px solid lightblue;
+    display: inline-block;
+
+}
+input[type=radio] {
+    width: fit-content;
+}
+input[type=date], input[type=number] {
+    width: 30%;
+}
+input[type=checkbox] {
+    width: fit-content;
+}
+input:disabled {
+    cursor: not-allowed;
+}
+label {
+    padding: 0.5rem 0rem;
+    font-size: 12px;
+}
+.group-label {
+    width: 100%;
+}
+    
+.group-label label {
+    margin-left: 2rem;
+}
+button {
+    width: fit-content;
+    padding: 0.5rem;
+    margin-top: 0.5rem;
+    display: block;
+    background-color: rgb(13, 69, 143);
+    color: white;
+    border: none;
+    border-radius: 5px;
+
+}
+button:hover {
+    background-color: rgb(12, 103, 223);
+}
+button:disabled {
+    background-color: rgb(196, 207, 221);
+    cursor: not-allowed;
+}
+.error-message {
+    color: rgb(150, 22, 22);
+    padding: 0.5rem 0rem;
+    font-size: 12px;
+}

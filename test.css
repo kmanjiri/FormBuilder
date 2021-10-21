@@ -1,0 +1,14 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#form-container {
+    width: 50%
+}
+.outerStyle {
+    color: green;
+    font-weight: 900;
+}
+
