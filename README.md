@@ -7,6 +7,7 @@ To launch the project follow below steps
 
 About FormBuilder
     create Form control details in given format
+    
     1. form control
         control = {
             type: 'valid html element tag name used inside form like input/textarea/button',
@@ -83,9 +84,11 @@ What it does
 
 
 What can be improved
+
     1. lot :P
     2. CSS: responsiveness, multiple controls on same line/decide the place/alignment of controls on UI, scoping css using shadow dom or dynamic id addition
     3. functionality : 
+    
         1. Control public/private apis of FormBuilderObj
         2. custom validators
         3. adding more checks of native validators (I ahve added only few checks)
